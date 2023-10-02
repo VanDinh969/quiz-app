@@ -10,6 +10,7 @@ const QuestionsContext = React.createContext({
   handlePrevious: () => {},
   handleSelectAnswer: (answerValue: number) => {},
   handleSubmit: () => {},
+  timing: 0,
 });
 
 export default QuestionsContext;

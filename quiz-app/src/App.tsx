@@ -12,6 +12,7 @@ function App() {
   const [questionList, setQuestionList] = useState<IQuestion[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [point, setPoint] = useState<number>(0);
+  const timing: number = 70;
 
   const questionQuantity: number = questionList.length;
 
@@ -71,6 +72,9 @@ function App() {
     }
   };
 
+  // timing clock
+  // const [timeState, setTimeState] = useState<number>(time);
+
   // Context
   const questionsCtxValue = {
     questionList,
@@ -81,6 +85,7 @@ function App() {
     handlePrevious,
     handleSelectAnswer,
     handleSubmit,
+    timing,
   };
 
   useEffect(() => {
