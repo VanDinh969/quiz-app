@@ -6,11 +6,14 @@ const QuestionsContext = React.createContext({
   currentQuestion: 0,
   point: 0,
   questionQuantity: 0,
+  goInGame: () => {},
   handleNext: () => {},
   handlePrevious: () => {},
   handleSelectAnswer: (answerValue: number) => {},
   handleSubmit: () => {},
-  timing: 0,
+  goReview: () => {},
+  handleTryAgain: () => {},
+  timeState: 0,
 });
 
 export default QuestionsContext;

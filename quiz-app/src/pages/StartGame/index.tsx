@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import styled from "../../styles/StartGame.module.css";
+import { useContext } from "react";
+import QuestionsContext from "../../questions.context";
 
 export default function StartGamePage() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const { goInGame } = useContext(QuestionsContext);
 
   return (
     <div className={`text-center ${styled.pt64}`}>
@@ -11,7 +14,7 @@ export default function StartGamePage() {
       </h1>
       <button
         className={`${styled.button} ${styled.fontBold}`}
-        onClick={() => navigate(`/in-game`)}
+        onClick={() => goInGame()}
       >
         Start
       </button>

@@ -1,7 +1,25 @@
-import * as React from "react";
+import ActionsButton from "../../components/ActionsButton";
+import QuestionsContext from "../../questions.context";
+import styled from "../../styles/EndGame.module.css";
+import { useContext } from "react";
 
-export interface IEndGamePageProps {}
-
-export default function EndGamePage(props: IEndGamePageProps) {
-  return <h1>End game page</h1>;
+export default function EndGamePage() {
+  const { goReview, point, handleTryAgain } = useContext(QuestionsContext);
+  return (
+    <div className={`${styled.endGameContainer} text-center`}>
+      <h3 className={`text-white`}>Your core is: {point}</h3>
+      <div>
+        <ActionsButton
+          title={"Try again"}
+          actions={handleTryAgain}
+          className={`${styled.tryAgainBtn}`}
+        />
+        <ActionsButton
+          title={"Review"}
+          actions={goReview}
+          className={`${styled.reviewBtn}`}
+        />
+      </div>
+    </div>
+  );
 }

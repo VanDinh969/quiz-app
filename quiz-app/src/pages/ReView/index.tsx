@@ -1,30 +1,25 @@
-import { useContext, useState } from "react";
-import styled from "../../styles/InGame.module.css";
+import { useContext } from "react";
 import QuestionsContext from "../../questions.context";
 import ActionsButton from "../../components/ActionsButton";
-import { CircularProgress } from "@mui/material";
+import styled from "../../styles/Review.module.css";
 
-export default function InGamePage() {
+export default function ReviewPage() {
   const {
     questionList,
     currentQuestion,
+    questionQuantity,
     handleNext,
     handlePrevious,
-    questionQuantity,
-    handleSelectAnswer,
-    handleSubmit,
-    timeState,
+    handleTryAgain,
   } = useContext(QuestionsContext);
-
   const curQuestion = questionList[currentQuestion];
-  const [time] = useState<number>(timeState);
 
   return (
     <div
-      className={`d-flex flex-column justify-content-between align-items-center ${styled.inGameContainer}`}
+      className={`d-flex flex-column justify-content-between align-items-center ${styled.reviewContainer}`}
     >
       {/* button */}
-      <div className={`d-flex-justify-content-center`}>
+      <div>
         <ActionsButton
           title={"Previous"}
           actions={handlePrevious}
@@ -42,15 +37,9 @@ export default function InGamePage() {
           }`}
         />
         <ActionsButton
-          title={"Submit"}
-          actions={handleSubmit}
-          className={`${styled.buttonSubmit}`}
-          style={{
-            display:
-              Number(curQuestion.id) === questionQuantity
-                ? "inline-block"
-                : "none",
-          }}
+          title={"Restart"}
+          actions={handleTryAgain}
+          className={`${styled.buttonRestart}`}
         />
       </div>
 
@@ -61,23 +50,11 @@ export default function InGamePage() {
       >
         {/* timing o'clock */}
         <div
-          className={`${styled.timingContainer} position-absolute rounded-circle d-flex justify-content-center align-items-center bg-white`}
+          className={`${styled.timingContainer} ${styled.boxShadow} position-absolute rounded-circle d-flex justify-content-center align-items-center bg-white`}
         >
-          <CircularProgress
-            variant="determinate"
-            value={(timeState / time) * 100}
-            // value={75}
-            size={80}
-          />
+          <p className={`mb-0`}>End!</p>
         </div>
-        <div
-          className={`${styled.timingContainer} ${styled.boxShadow} position-absolute rounded-circle d-flex justify-content-center align-items-center`}
-        >
-          <p className={`${timeState < 10 ? "text-danger" : ""} mb-0`}>
-            {String(Math.floor(timeState / 60)).padStart(2, "0")}:
-            {String(timeState % 60).padStart(2, "0")}
-          </p>
-        </div>
+
         {/* Question content*/}
         <div className={`${styled.questionNumber}`}>
           <p>
@@ -94,11 +71,16 @@ export default function InGamePage() {
         {curQuestion.answers.map((item, index) => (
           <div
             key={index}
-            className={`${styled.boxShadow} ${styled.answerBox} ${
-              item.selected ? styled.answerSelected : ""
-            } px-3 rounded-lg my-3 d-flex align-items-center`}
+            className={`${styled.boxShadow} ${
+              styled.answerBox
+            } px-3 rounded-lg my-3 d-flex align-items-center ${
+              item.correct ? styled.correctAnswer : ""
+            } ${
+              item.selected === true && item.correct === false
+                ? styled.falseAnswer
+                : ""
+            }`}
             style={{ width: "40rem", height: "4rem" }}
-            onClick={() => handleSelectAnswer(index)}
           >
             <p className={`${styled.answerContent} mb-0`}>
               {index + 1}. {item.answer_content}

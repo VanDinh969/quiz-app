@@ -1,0 +1,96 @@
+.reviewContainer {
+  padding-top: 48px;
+}
+
+.buttonPreOff {
+  color: rgb(209, 213, 219);
+  background-color: rgb(229, 231, 235);
+}
+
+.buttonPreOn {
+  color: rgb(255, 255, 255);
+  background-color: rgb(107, 114, 128);
+}
+
+.buttonPreOn:hover {
+  background-color: rgb(209, 213, 219);
+}
+
+.buttonNextOn {
+  background-color: rgb(110, 231, 183);
+}
+
+.buttonNextOn:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgba(16, 185, 129);
+}
+
+.buttonNextOff {
+  color: rgb(209, 213, 219);
+  background-color: rgb(229, 231, 235);
+}
+
+.buttonRestart {
+  color: rgb(255, 255, 255);
+  background-color: rgb(245, 158, 11);
+}
+
+.buttonRestart:hover {
+  background-color: rgb(251, 191, 36);
+}
+
+.boxShadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.questionContainer {
+  padding-top: 4rem;
+  margin-top: 4rem;
+  margin-bottom: 2.5rem;
+}
+
+.questionNumber {
+  color: rgb(67, 56, 202);
+  font-weight: 500;
+  line-height: 1.75rem;
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+}
+
+.questionContent {
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.answerBox {
+  background-color: #fff;
+  transition: all 0.25s;
+  border: 2px solid rgba(229, 231, 235);
+}
+
+.answerContent {
+  line-height: 1.125rem;
+  font-weight: 500;
+  background-color: inherit;
+}
+
+.correctAnswer {
+  background-color: rgb(16, 185, 129);
+  color: white;
+}
+
+.falseAnswer {
+  background-color: rgb(239, 68, 68);
+  color: white;
+}
+
+.timingContainer {
+  width: 5rem;
+  height: 5rem;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: red;
+  font-weight: 700;
+}

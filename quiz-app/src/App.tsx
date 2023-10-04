@@ -7,14 +7,16 @@ import AppServices from "./services/AppServices";
 import QuestionsContext from "./questions.context";
 import styled from "./styles/App.module.css";
 import { IAnswer, IQuestion } from "./types";
+import ReviewPage from "./pages/ReView";
 
 function App() {
   const [questionList, setQuestionList] = useState<IQuestion[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [point, setPoint] = useState<number>(0);
-  const timing: number = 70;
 
   const questionQuantity: number = questionList.length;
+  const workTime: number = 10;
+  const [isInGame, setIsInGame] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -64,6 +66,7 @@ function App() {
 
   // Submit
   const handleSubmit = () => {
+    setTimeState(0);
     const newPoint = handleScoring();
     const confirm = window.confirm("Do you want to submit answes ?");
     if (confirm === true) {
@@ -73,7 +76,42 @@ function App() {
   };
 
   // timing clock
-  // const [timeState, setTimeState] = useState<number>(time);
+  const [timeState, setTimeState] = useState<number>(workTime);
+
+  const goInGame = () => {
+    setIsInGame(true);
+    navigate(`/in-game`);
+  };
+
+  useEffect(() => {
+    let setIntervalTiming: number;
+    if (isInGame && timeState) {
+      setIntervalTiming = setInterval(() => {
+        console.log("time state:", timeState);
+        setTimeState((prev) => prev - 1);
+      }, 1000);
+    }
+    return () => clearInterval(setIntervalTiming);
+  }, [timeState, isInGame]);
+
+  useEffect(() => {
+    if (timeState === 0) {
+      const newPoint = handleScoring();
+      setPoint(newPoint);
+      navigate(`/end-game`);
+    }
+  }, [timeState]);
+
+  // go review
+  const goReview = () => {
+    setCurrentQuestion(0);
+    navigate(`/review`);
+  };
+
+  // Try again
+  const handleTryAgain = () => {
+    window.location.href = "/";
+  };
 
   // Context
   const questionsCtxValue = {
@@ -81,11 +119,14 @@ function App() {
     currentQuestion,
     point,
     questionQuantity,
+    goInGame,
     handleNext,
     handlePrevious,
     handleSelectAnswer,
     handleSubmit,
-    timing,
+    goReview,
+    handleTryAgain,
+    timeState,
   };
 
   useEffect(() => {
@@ -93,7 +134,7 @@ function App() {
       setQuestionList(response);
     });
   }, []);
-  // console.log("questionList: ", questionList);
+
   return (
     <>
       <QuestionsContext.Provider value={questionsCtxValue}>
@@ -104,6 +145,7 @@ function App() {
             <Route path="start-game" element={<StartGamePage />} />
             <Route path="in-game" element={<InGamePage />} />
             <Route path="end-game" element={<EndGamePage />} />
+            <Route path="review" element={<ReviewPage />} />
           </Routes>
         </div>
       </QuestionsContext.Provider>
