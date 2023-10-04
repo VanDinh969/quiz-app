@@ -1,5 +1,5 @@
 import ActionsButton from "../../components/ActionsButton";
-import QuestionsContext from "../../questions.context";
+import QuestionsContext from "../../context/questions.context";
 import styled from "../../styles/EndGame.module.css";
 import { useContext } from "react";
 

@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import styled from "../../styles/InGame.module.css";
-import QuestionsContext from "../../questions.context";
+import QuestionsContext from "../../context/questions.context";
 import ActionsButton from "../../components/ActionsButton";
 import { CircularProgress } from "@mui/material";
 

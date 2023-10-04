@@ -18,7 +18,7 @@ export default class ApiService {
     axios.interceptors.response.use(
       (response) => response,
       (error) => {
-        const { config, response } = error;
+        const { response } = error;
         if (response.status === 500) {
           alert("Error with code 500!");
         }

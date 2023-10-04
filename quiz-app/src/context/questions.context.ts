@@ -1,5 +1,5 @@
 import React from "react";
-import { IQuestion } from "./types";
+import { IQuestion } from "../types";
 
 const QuestionsContext = React.createContext({
   questionList: [] as IQuestion[],
@@ -9,7 +9,9 @@ const QuestionsContext = React.createContext({
   goInGame: () => {},
   handleNext: () => {},
   handlePrevious: () => {},
-  handleSelectAnswer: (answerValue: number) => {},
+  handleSelectAnswer: (answerValue: number) => {
+    console.log(answerValue);
+  },
   handleSubmit: () => {},
   goReview: () => {},
   handleTryAgain: () => {},

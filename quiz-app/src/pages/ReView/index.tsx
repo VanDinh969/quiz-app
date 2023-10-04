@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import QuestionsContext from "../../questions.context";
+import QuestionsContext from "../../context/questions.context";
 import ActionsButton from "../../components/ActionsButton";
 import styled from "../../styles/Review.module.css";
 

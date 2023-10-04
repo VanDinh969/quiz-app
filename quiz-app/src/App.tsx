@@ -4,7 +4,7 @@ import InGamePage from "./pages/Ingame";
 import EndGamePage from "./pages/EndGame";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import AppServices from "./services/AppServices";
-import QuestionsContext from "./questions.context";
+import QuestionsContext from "./context/questions.context";
 import styled from "./styles/App.module.css";
 import { IAnswer, IQuestion } from "./types";
 import ReviewPage from "./pages/ReView";
@@ -87,7 +87,6 @@ function App() {
     let setIntervalTiming: number;
     if (isInGame && timeState) {
       setIntervalTiming = setInterval(() => {
-        console.log("time state:", timeState);
         setTimeState((prev) => prev - 1);
       }, 1000);
     }
