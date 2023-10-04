@@ -15,7 +15,7 @@ function App() {
   const [point, setPoint] = useState<number>(0);
 
   const questionQuantity: number = questionList.length;
-  const workTime: number = 10;
+  const workTime: number = 90;
   const [isInGame, setIsInGame] = useState<boolean>(false);
 
   const navigate = useNavigate();
