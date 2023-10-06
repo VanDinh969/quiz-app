@@ -15,7 +15,7 @@ function App() {
   const [point, setPoint] = useState<number>(0);
 
   const questionQuantity: number = questionList.length;
-  const workTime: number = 90;
+  const workTime: number = 10;
   const [isInGame, setIsInGame] = useState<boolean>(false);
 
   const navigate = useNavigate();
@@ -66,10 +66,10 @@ function App() {
 
   // Submit
   const handleSubmit = () => {
-    setTimeState(0);
-    const newPoint = handleScoring();
     const confirm = window.confirm("Do you want to submit answes ?");
     if (confirm === true) {
+      const newPoint = handleScoring();
+      setTimeState(0);
       setPoint(newPoint);
       navigate(`/end-game`);
     }

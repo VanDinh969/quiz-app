@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "../../styles/InGame.module.css";
 import QuestionsContext from "../../context/questions.context";
 import ActionsButton from "../../components/ActionsButton";
